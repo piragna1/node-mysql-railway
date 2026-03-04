@@ -3,11 +3,15 @@ import { pool } from "./db.js";
 import { PORT } from "./config.js";
 const app = express();
 app.get("/", async (req, res) => {
-  console.log("request received");
-  const [rows] = await pool.query("Select * from users;");
-  res.json(rows);
-  res.end("Welcome to server");
+  try {
+    const [rows] = await pool.query("SELECT * FROM users;");
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Database error");
+  }
 });
+
 app.get("/ping", async (req, res) => {
   console.log("request received");
   const [result] = await pool.query(`Select "hello world" as Result`);
