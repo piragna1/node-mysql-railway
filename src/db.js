@@ -2,7 +2,7 @@ import {
   MYSQLHOST,
   MYSQLUSER,
   MYSQLPASSWORD,
-  MYSQLNAME,
+  MYSQLDATABASE,
   MYSQLPORT,
 } from "./config.js";
 
@@ -12,5 +12,5 @@ export const pool = createPool({
   password: MYSQLPASSWORD,
   host: MYSQLHOST,
   port: MYSQLPORT,
-  database: MYSQLNAME,
+  database: MYSQLDATABASE,
 });
